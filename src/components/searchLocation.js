@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const SearchLocation = ({ setUserLocation }) => {
+    const api_key="";
     const searchInputRef = useRef(null);
     const handleSearchClick = (e) => {
         const value = searchInputRef.current?.value;
@@ -11,7 +12,7 @@ const SearchLocation = ({ setUserLocation }) => {
          navigator.geolocation.getCurrentPosition(
             (position) => {
                 const { latitude, longitude } = position.coords;
-                fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=f5e188e01d924118a864baf85ce0f988`)
+                fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${api_key}`)
                     .then((res) => res.json())
                     .then((data) => {
                         const components = data.results[0].components;
