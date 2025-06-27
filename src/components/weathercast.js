@@ -6,7 +6,8 @@ const Weathercast = ({ userLocation }) => {
     const [description, setDescription] = useState("Testing description");
     const [weatherIcon, setWeatherIcon] = useState("/icons/clear.svg");
     const [weatherList, setWeatherList] = useState([]);
-
+    const api_key = "";
+    
     const getHourWeather = (weatherHour) => {
         const beginSpan = new Date().getHours() + 1;
         let result = [];
@@ -56,7 +57,7 @@ const Weathercast = ({ userLocation }) => {
         return result;
     };
     useEffect(() => {
-        fetch(`https://api.weatherapi.com/v1/forecast.json?q=${userLocation}&days=2&tp=5&key=1ca50126e4b34d81881203900252606`)
+        fetch(`https://api.weatherapi.com/v1/forecast.json?q=${userLocation}&days=2&tp=5&key=${api_key}`)
             .then((response) => response.json())
             .then((data) => {
                 setTemperature(data.current.temp_c);
